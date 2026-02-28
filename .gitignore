@@ -1,0 +1,19 @@
+# Data files
+data/
+auth/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+.env.*
+
+# Claude
+.claude/
+CLAUDE.md
