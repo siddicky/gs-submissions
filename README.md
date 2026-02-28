@@ -100,7 +100,7 @@ df = pd.read_json("data/proving-ground_submissions.jsonl", lines=True)
 
 ## Authentication
 
-The scraper extracts session cookies from your local Chrome browser using [rookiepy](https://github.com/thewh1teagle/rookiepy). You must be logged into Gray Swan Arena in Chrome before running.
+The scraper extracts session cookies from your local Chrome browser using rookiepy. You must be logged into Gray Swan Arena in Chrome before running.
 
 On first run, it extracts cookies, validates them against the site, and caches the browser state for subsequent runs.
 
