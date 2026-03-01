@@ -9,6 +9,8 @@ Scrapes all submission metadata, behavior criteria, and full conversations (incl
 Requires Python 3.11+ and a Chrome browser logged into Gray Swan Arena.
 
 ```bash
+git clone https://github.com/arvkevi/gs-scraper.git
+cd gs-scraper
 pip install -e .
 playwright install chromium
 ```
