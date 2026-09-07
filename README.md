@@ -6,33 +6,53 @@ Scrapes all submission metadata, behavior criteria, and full conversations (incl
 
 ## Setup
 
-Requires Python 3.11+ and a Chrome browser logged into Gray Swan Arena.
+Requires [uv](https://docs.astral.sh/uv/getting-started/installation/), Python 3.11+, and a Chrome browser logged into Gray Swan Arena.
 
 ```bash
-git clone https://github.com/arvkevi/gs-scraper.git
-cd gs-scraper
-pip install -e .
-playwright install chromium
+git clone https://github.com/siddicky/gs-submissions.git
+cd gs-submissions
+uv sync --locked
+uv run --locked playwright install chromium
 ```
+
+The checkout pins Python 3.11 in `.python-version`; uv downloads it if needed.
+This avoids a source-build failure in `rookiepy` on Python 3.14.
 
 ## Usage
 
 ```bash
 # Scrape all arenas (proving-ground + safeguards)
-grayswan-scrape
+uv run --locked grayswan-scrape
 
 # Scrape a specific arena
-grayswan-scrape --arenas proving-ground
+uv run --locked grayswan-scrape --arenas proving-ground
 
 # Run discovery mode (save HTML snapshots + API data for debugging)
-grayswan-scrape --discover
+uv run --locked grayswan-scrape --discover
 
 # Limit submissions (useful for testing)
-grayswan-scrape --max-submissions 10
+uv run --locked grayswan-scrape --max-submissions 10
 
 # Adjust concurrency and delays
-grayswan-scrape --concurrency 3 --delay-min 2.0 --delay-max 4.0
+uv run --locked grayswan-scrape --concurrency 3 --delay-min 2.0 --delay-max 4.0
 ```
+
+### Development and builds
+
+```bash
+# Install the development tools
+uv sync --locked --extra dev
+
+# Check that dependency metadata matches the committed lockfile
+uv lock --check
+
+# Build a source distribution and wheel in dist/
+uv build
+```
+
+The build uses `uv_build` and packages the existing `src` module. Commit
+`uv.lock` when dependencies change. Run `uv lock` after editing dependencies,
+or `uv lock --upgrade` to update all locked versions, then sync the environment.
 
 ### Options
 
